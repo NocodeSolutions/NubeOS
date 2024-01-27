@@ -1,0 +1,13 @@
+version: '3.1'
+services:
+  n8n:
+    image: n8nio/n8n
+    restart: always
+    ports:
+      - $APP_EXTERNAL_PORT:5678
+    volumes:
+      - $APP_DIR/.n8n:/root/.n8n
+    environment:
+      - N8N_PROTOCOL=https
+      - N8N_HOST=$FULL_DOMAIN
+      - WEBHOOK_TUNNEL_URL=https://$FULL_DOMAIN
